@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<main class="container" style="">
+			<div class="cols">
+				<lable id="io">
+					<input type="file" id="png" name="file" accept=".png" hidden="true" />
+					<h3>Input</h3>
+					<input
+						type="text"
+						class="int"
+						id="int"
+						value="000000"
+						placeholder="000000"
+					/>
+					<h3>Gradient Markers</h3>
+					<input type="text" class="int" val="" id="n" />
+					<h3>OutPut</h3>
+					<input type="text" class="int" id="out" value="#222222" readonly />
+				</lable>
+			</div>
+			<label class="cols">
+				<div class="row">
+					<input
+						type="color"
+						class="box"
+						id="box__one"
+						value="#222222"
+						style=""
+					/>
+					<input type="color" class="box" id="box__two" value="#222222" style=""/>
+					<span >
+						<button id="btn__random" class="btn btn__random" style="">
+							Random Background
+						</button>
+				</div>
+			</label>
+			<div class="cols">
+				<button id="btn__select" id="set" class="cols btn btn__select" style="">
+					Set Color
+				</button>
+				<div>
+					<button id="btn__grad" id="gen" class="cols btn btn__select" style="">
+						Gradient Generator
+					</button>
+				</div>
+			</div>
+		</main>
+		<script type src="color.js"></script>
+	</body>
+</html>
