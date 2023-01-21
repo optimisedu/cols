@@ -10,20 +10,24 @@
 		<main class="container" style="">
 			<div class="cols">
 				<lable id="io">
-					<input type="file" id="png" name="file" accept=".png" hidden="true" />
+					<input type="file" id="fileIn" name="fileIn" accept=".png, .jpeg"" multiple/>
 					<h3>Input</h3>
 					<input
 						type="text"
 						class="int"
 						id="int"
 						value="000000"
-						placeholder="000000"
+						placehoblder="000000"
 					/>
+					</label>
+					 <label class="io">
 					<h3>Gradient Markers</h3>
 					<input type="text" class="int" val="" id="n" />
+					</label>
 					<h3>OutPut</h3>
+					<label class="io">
 					<input type="text" class="int" id="out" value="#222222" readonly />
-				</lable>
+					</lable>
 			</div>
 			<label class="cols">
 				<div class="row">
@@ -37,10 +41,21 @@
 					<input type="color" class="box" id="box__two" value="#222222" style=""/>
 					<span >
 						<button id="btn__random" class="btn btn__random" style="">
+					
 							Random Background
 						</button>
+	
 				</div>
 			</label>
+			<div>
+			<canvas id="canvas" class ="cols"></canvas>
+								<div>
+						<button id="b__button" class="">backwards</button>
+						<button id="f__button" class="">forwards</button>
+						</div>
+			</div>
+			<button id = "show">Show</button>
+			<button id = "save">Save</button>
 			<div class="cols">
 				<button id="btn__select" id="set" class="cols btn btn__select" style="">
 					Set Color
