@@ -102,44 +102,88 @@ let images = [];
 let globalAlpha = 1;
 
 fileIn.addEventListener("change", handleFiles, false);
-
-function handleFiles() {
-	const fileList = this.files;
-	let loader = Promise.all(
-		Array.from(fileList).map((file) => {
-			return new Promise((resolve, reject) => {
-				const reader = new FileReader();
-				reader.readAsDataURL(file);
-				reader.onload = () => {
-					const img = new Image();
-					img.src = reader.result;
-					resolve(img);
-				};
-				reader.onerror = reject;
-			});
-		})
-	);
-	loader
-		.then((imgs) => {
-			images = imgs;
-		})
-		.then(() => {
-			canvas.style.border = "1px solid black";
-			function animation() {
-				let aspectRatio = images[currentImage].naturalWidth / images[currentImage].naturalHeight;
-				canvas.width = canvas.height * aspectRatio;
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
-				ctx.globalAlpha = globalAlpha;
-				ctx.drawImage(images[currentImage], 0, 0, canvas.width, canvas.height);
-				globalAlpha -= 0.01;
-				if (globalAlpha <= 0) {
-					globalAlpha = 1;
-					currentImage = (currentImage + 1) % images.length;
-				}
-			}
-			setInterval(animation, 30);
-		})
-		.catch((err) => {
-			console.log(err);
-		});
+async function handleFiles() {
+const fileList = this.files;
+try {
+let imgs = await Promise.all(
+Array.from(fileList).map(async (file) => {
+return new Promise(async (resolve, reject) => {
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.onload = () => {
+const img = new Image();
+img.src = reader.result;
+resolve(img);
+};
+reader.onerror = reject;
+});
+})
+);
+images = imgs;
+canvas.style.border = "1px solid black";
+function animation() {
+let aspectRatio = images[currentImage].naturalWidth / images[currentImage].naturalHeight;
+canvas.width = canvas.height * aspectRatio;
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+ctx.globalAlpha = globalAlpha;
+ctx.drawImage(images[currentImage], 0, 0, canvas.width, canvas.height);
+globalAlpha -= 0.01;
+if (globalAlpha <= 0) {
+globalAlpha = 1;
+currentImage = (currentImage + 1) % images.length;
 }
+}
+setInterval(animation, 30);
+} catch (err) {
+console.log(err);
+}
+}
+
+
+
+// function handleFiles() {
+// 	const fileList = this.files;
+// 	let loader = Promise.all(
+// 		Array.from(fileList).map((file) => {
+// 			return new Promise((resolve, reject) => {
+// 				const reader = new FileReader();
+// 				reader.readAsDataURL(file);
+// 				reader.onload = () => {
+// 					const img = new Image();
+// 					img.src = reader.result;
+// 					resolve(img);
+// 				};
+// 				reader.onerror = reject;
+// 			});
+// 		})
+// 	);
+// 	loader
+// 		.then((imgs) => {
+// 			images = imgs;
+// 		})
+// 		.then(() => {
+// 			canvas.style.border = "1px solid black";
+// 			function animation() {
+// 				let aspectRatio = images[currentImage].naturalWidth / images[currentImage].naturalHeight;
+// 				canvas.width = canvas.height * aspectRatio;
+// 				ctx.clearRect(0, 0, canvas.width, canvas.height);
+// 				ctx.globalAlpha = globalAlpha;
+// 				ctx.drawImage(images[currentImage], 0, 0, canvas.width, canvas.height);
+// 				globalAlpha -= 0.01;
+// 				if (globalAlpha <= 0) {
+// 					globalAlpha = 1;
+// 					currentImage = (currentImage + 1) % images.length;
+// 				}
+// 			}
+// 			setInterval(animation, 30);
+// 		})
+// 		.catch((err) => {
+// 			console.log(err);
+// 		});
+// }
+
+
+
+
+
+
